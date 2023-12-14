@@ -2,22 +2,18 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Header from '../features/home/Header';
 import Screen from '../components/Screen';
+import Watchlist from '../features/home/Watchlist';
+import TitleLink from '../components/TitleLink';
+import TopMovers from '../features/home/TopMovers';
 
 const Home: React.FC = () => {
   return (
     <Screen>
         <Header />
+        <Watchlist />
+        <TopMovers />
+        {/* <TitleLink title="Top Movers" text="All" iconName="arrow-right-thin" /> */}
     </Screen>
-    // <View style={styles.container}>
-    //   <View style={styles.header}>
-    //     <Text style={styles.headerText}>Total Investing</Text>
-    //     <Text style={styles.amountText}>$100,000</Text>
-    //     <Text style={styles.profitText}>+$32.5 (0.48%)</Text>
-    //   </View>
-    //   <View style={styles.watchList}>
-    //     {/* Display the company names and market values here */}
-    //   </View>
-    // </View>
   );
 };
 

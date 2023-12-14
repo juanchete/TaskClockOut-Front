@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   secondHeader: {
     paddingHorizontal: 16,
-    marginBottom: 90
+    marginBottom: 40
   },
   headerText: {
     fontSize: 18,
