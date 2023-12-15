@@ -6,11 +6,12 @@ import Icon from 'react-native-vector-icons/Feather';
 type ButtonProps = {
   text: string;
   icon?: string;
+  onPress?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ text, icon }) => {
+const Button: React.FC<ButtonProps> = ({ text, icon, onPress }) => {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       {icon && <Icon name={icon} size={20} color="white" />}
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
     padding: 2,
     flexDirection: 'row',
     alignItems: 'center',
+    textAlign: 'center',
     width: 100,
   },
   buttonText: {

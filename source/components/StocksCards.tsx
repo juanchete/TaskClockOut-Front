@@ -1,23 +1,17 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import Row from './Row';
+import { Stock } from '../features/home/interfaces';
 
-interface Stock {
-    name: string;
-    shortName: string;
-    close: number;
-    difference: number;
-    percentage: number;
-}
 
-const StockCardsComponent = ({shortName, name, close, difference, percentage} : Stock) => {
+const StockCardsComponent = ({shortName, name, close, difference, percentage, imageURL} : Stock) => {
 
     const isGrowing = difference > 0;
 
     return (
         <Row style={styles.container}>
             <View style={styles.leftBlock}>
-                <Image source={{ uri: "https://play-lh.googleusercontent.com/cShys-AmJ93dB0SV8kE6Fl5eSaf4-qMMZdwEDKI5VEmKAXfzOqbiaeAsqqrEBCTdIEs"}} style={styles.circleImage} />
+                <Image source={{ uri: imageURL}} style={styles.circleImage} />
                 <View>
                 <Text style={styles.primaryText}>{shortName}</Text>
                 <Text style={styles.secondaryText}>{name}</Text>

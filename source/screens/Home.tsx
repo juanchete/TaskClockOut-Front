@@ -26,6 +26,9 @@ const Home: React.FC = () => {
   //   return randomDate.toISOString().split('T')[0];
   // };
   
+  console.log(data?.data);
+  
+
   return (
     <Screen refresh={isLoading} refetch={handleEndReached}>
         <Header />

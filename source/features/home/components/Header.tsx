@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Modal from "react-native-modal";
 import Button from '../../../components/Button';
+import ModalDeposit from './ModalDeposit';
 
 const Header: React.FC = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [buyingPower, setBuyingPower] = useState(840.56);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const handleDeposit = (amount: string) => {
+    // Perform deposit logic here
+    console.log(Number(amount));
+    if (isNaN(Number(amount))) return;
+    setBuyingPower(buyingPower + Number(amount))
+    toggleModal();
+};
   return (
     <View>
       <View style={styles.header}>
@@ -12,11 +28,12 @@ const Header: React.FC = () => {
       </View>
       <View style={styles.secondHeader}>
         <Text style={styles.headerText}>Total Investing</Text>
-        <View style={{ flexDirection: 'row', justifyContent: "space-between" }}>
-            <Text style={styles.powerText}>$100,000</Text>
-            <Button icon='plus' text="Deposit" />
+        <View style={{ flexDirection: 'row', justifyContent: "space-between" }} >
+            <Text style={styles.powerText}>${buyingPower}</Text>
+            <Button icon='plus' text="Deposit" onPress={toggleModal}/>
         </View>
       </View>
+     <ModalDeposit isVisible={isModalVisible} handleDeposit={handleDeposit} />
     </View>
   );
 };
