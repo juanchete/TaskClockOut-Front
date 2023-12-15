@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#1c1e1f',
-        height: 300
+        height: 300,
     },
     stockContainer: {
         marginVertical: 10,

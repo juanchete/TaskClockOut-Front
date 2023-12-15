@@ -6,6 +6,7 @@ import Watchlist from '../features/home/components/Watchlist';
 import TitleLink from '../components/TitleLink';
 import TopMovers from '../features/home/components/TopMovers';
 import { useWatchlistData } from '../features/home/services/getWatchlist';
+import Skeleton from '../components/Skeleton';
 
 const Home: React.FC = () => {
 
@@ -14,25 +15,20 @@ const Home: React.FC = () => {
   const handleEndReached = useCallback(() => {
     // Generar una nueva fecha aleatoria aquí
     // const newRandomDate = generateRandomDate();
-    refetch({ date: "2023-12-04" });
+    const dates = [ "2023-12-08", "2023-12-09", "2023-12-10"];
+    const randomDate = dates[Math.floor(Math.random() * dates.length)];
+
+    refetch({ date: randomDate });
   }, [refetch]);
 
-  // const generateRandomDate = () => {
-  //   // Lógica para generar una fecha aleatoria según tus necesidades
-  //   // Aquí, simplemente generamos una fecha entre 2020-01-01 y 2023-12-31
-  //   const startDate = new Date('2020-01-01');
-  //   const endDate = new Date('2023-12-31');
-  //   const randomDate = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
-  //   return randomDate.toISOString().split('T')[0];
-  // };
-  
-  console.log(data?.data);
   
 
   return (
     <Screen refresh={isLoading} refetch={handleEndReached}>
         <Header />
-        <Watchlist stocks={ data?.data || []}/>
+        {isLoading ? <View style={styles.containerSkeleton}>
+          <Skeleton width={300} height={300}/>
+        </View> : <Watchlist stocks={ data?.data || []}/>}
         <TopMovers />
         {/* <TitleLink title="Top Movers" text="All" iconName="arrow-right-thin" /> */}
     </Screen>
@@ -68,6 +64,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
   },
+  containerSkeleton: {
+    
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default Home;

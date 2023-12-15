@@ -17,8 +17,6 @@ const Header: React.FC = () => {
   };
 
   const handleDeposit = (amount: string) => {
-    // Perform deposit logic here
-    console.log(Number(amount));
     if (isNaN(Number(amount))) return;
     setBuyingPower(buyingPower + Number(amount))
     toggleModal();

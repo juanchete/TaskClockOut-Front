@@ -8,17 +8,6 @@ interface ScreenProps {
     refetch?: () => void;
     }
 const Screen = ({children, refresh, refetch} : ScreenProps) => {
-
-  // const [refresh, setRefresh] = useState(false);
-
-  // const pullToRefresh = () => {
-  //   setRefresh(true);
-  //   setTimeout(() => {
-  //     setRefresh(false);
-  //   }, 5000);
-  // };
-
-  console.log(refresh);
   
 
   return (
