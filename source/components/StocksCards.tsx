@@ -3,14 +3,17 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import Row from './Row';
 
 interface Stock {
-    shortName: string;
     name: string;
-    value: number;
-    isGrowing: boolean;
-    percemtage:string;
+    shortName: string;
+    close: number;
+    difference: number;
+    percentage: number;
 }
 
-const StockCardsComponent = ({shortName, name, value, isGrowing, percemtage} : Stock) => {
+const StockCardsComponent = ({shortName, name, close, difference, percentage} : Stock) => {
+
+    const isGrowing = difference > 0;
+
     return (
         <Row style={styles.container}>
             <View style={styles.leftBlock}>
@@ -21,8 +24,8 @@ const StockCardsComponent = ({shortName, name, value, isGrowing, percemtage} : S
                 </View>
             </View>
             <View style={styles.rightBlock}>
-                <Text style={styles.primaryText}>${value}</Text>
-                <Text style={isGrowing ? styles.secondaryTextGreen: styles.secondaryTextRed}>{`${isGrowing ? "+" : "-"}${percemtage}`}</Text>
+                <Text style={styles.primaryText}>${close}</Text>
+                <Text style={isGrowing ? styles.secondaryTextGreen: styles.secondaryTextRed}>{`${isGrowing ? "+" : "-"}${difference} (${percentage.toFixed(2)}%)`}</Text>
             </View>
         </Row>
     );

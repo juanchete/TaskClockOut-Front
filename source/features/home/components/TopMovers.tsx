@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import TitleLink from '../../components/TitleLink';
-import Row from '../../components/Row';
-import UserCards from '../../components/UserCards';
+import TitleLink from '../../../components/TitleLink';
+import Row from '../../../components/Row';
+import UserCards from '../../../components/UserCards';
 
 interface TopMovers {
     name: string;
