@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import Row from './Row';
 import { Stock } from '../features/home/interfaces';
-
+import Icon from 'react-native-vector-icons/Feather';
 
 const StockCardsComponent = ({shortName, name, close, difference, percentage, imageURL} : Stock) => {
 
@@ -19,7 +19,10 @@ const StockCardsComponent = ({shortName, name, close, difference, percentage, im
             </View>
             <View style={styles.rightBlock}>
                 <Text style={styles.primaryText}>${close}</Text>
-                <Text style={isGrowing ? styles.secondaryTextGreen: styles.secondaryTextRed}>{`${isGrowing ? "+" : "-"}${difference} (${percentage.toFixed(2)}%)`}</Text>
+                <Row>
+                    <Icon name={isGrowing ? 'trending-up' : "trending-down"} size={15} color={isGrowing ? "#4ba651" : "#b84743"}  />
+                    <Text style={isGrowing ? styles.secondaryTextGreen: styles.secondaryTextRed}>  {isGrowing && "$"}{difference.toFixed(2)}{!isGrowing && "%"} (${percentage.toFixed(2)}%)`</Text>
+                </Row>
             </View>
         </Row>
     );
@@ -55,11 +58,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     secondaryTextGreen: {
-        color: 'green',
+        color: '#4ba651',
         fontSize: 14,
     },
     secondaryTextRed: {
-        color: 'red',
+        color: '#b84743',
         fontSize: 14,
     },
 });

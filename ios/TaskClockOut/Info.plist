@@ -35,6 +35,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>fonts/FontAwesome6_Regular.ttf</string>
 		<string>fonts/FontAwesome.ttf</string>
 		<string>fonts/Ionicons.ttf</string>
 		<string>fonts/Foundation.ttf</string>
