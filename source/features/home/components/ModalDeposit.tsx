@@ -1,7 +1,39 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
 import Modal from 'react-native-modal';
 import Button from '../../../components/Button';
+import styled from 'styled-components/native';
+
+const ModalStyle = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.View`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  align-items: center;
+`;
+
+const Title = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const Description = styled.Text`
+  margin-bottom: 10px;
+`;
+
+const Input = styled.TextInput`
+  height: 40px;
+  width: 200px;
+  border-color: gray;
+  border-width: 1px;
+  margin-bottom: 10px;
+  padding-horizontal: 10px;
+`;
 
 interface ModalDepositProps {
     handleDeposit: (amount: string) => void;
@@ -18,51 +50,21 @@ const ModalDeposit: React.FC<ModalDepositProps> = ({ handleDeposit, isVisible })
 
     return (
         <Modal isVisible={isVisible}>
-            <View style={styles.modal}>
-                <View style={styles.modalContent}>
-                    <Text style={styles.title}>Add funds to your wallet</Text>
-                    <Text style={styles.description}>Enter the amount you want to deposit:</Text>
-                    <TextInput
-                        style={styles.input}
+            <ModalStyle>
+                <ModalContent>
+                    <Title>Add funds to your wallet</Title>
+                    <Description>Enter the amount you want to deposit:</Description>
+                    <Input
                         keyboardType="numeric"
                         value={amount}
                         onChangeText={handleAmountChange}
                     />
                     <Button icon='plus' text="Deposit" onPress={() => handleDeposit(amount)}/>
-                </View>
-            </View>
+                </ModalContent>
+            </ModalStyle>
         </Modal>
     );
 };
 
-const styles = {
-    modal: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        padding: 20,
-        borderRadius: 8,
-        alignItems: 'center', 
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    description: {
-        marginBottom: 10,
-    },
-    input: {
-        height: 40,
-        width: 200,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-    },
-};
 
 export default ModalDeposit;

@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Button } from 'react-native';
 import TitleLink from '../../../components/TitleLink';
-import Row from '../../../components/Row';
 import UserCards from '../../../components/UserCards';
+import styled from 'styled-components/native';
+
+const ContainerRow = styled.View`
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        flexDirection: 'row'
+`;
 
 interface TopMovers {
     name: string;
@@ -29,11 +37,11 @@ const TopMovers: React.FC = () => {
             <View>
                 <TitleLink title="Top Movers" text='All' iconName="arrow-right" />
             </View>
-            <Row style={styles.container}>
+            <ContainerRow>
                 <Button title="Trending" onPress={() => setSelected("Trending")} color={selected === "Trending" ? "white" : "#898a8c"}/>
                 <Button title="Top Gainers" onPress={() => setSelected("Top Gainers")} color={selected === "Top Gainers" ? "white" : "#898a8c"}/>
                 <Button title="Top Losers" onPress={() => setSelected("Top Losers")} color={selected === "Top Losers" ? "white" : "#898a8c"}/>
-            </Row>
+            </ContainerRow>
             {movers.map((mover, index) => (
                 <UserCards name={mover.name} value={mover.value} key={index}/>
             ))}
@@ -41,14 +49,5 @@ const TopMovers: React.FC = () => {
     );
 };
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-    },
-});
 
 export default TopMovers;

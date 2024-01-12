@@ -1,70 +1,85 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View} from 'react-native';
 import Row from './Row';
 import { Stock } from '../features/home/interfaces';
 import Icon from 'react-native-vector-icons/Feather';
+import styled from 'styled-components/native';
+
+const RowContainer = styled.View`
+  justify-content: space-between;
+  align-items: center;
+  padding-horizontal: 16px;
+  padding-vertical: 8px;
+  flexDirection: row;
+`;
+
+const LeftBlock = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const CircleImage = styled.Image`
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 8px;
+`;
+
+const PrimaryText = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+const SecondaryText = styled.Text`
+  color: gray;
+  font-size: 14px;
+`;
+
+const RightBlock = styled.View`
+  align-items: flex-end;
+`;
+
+const SecondaryTextGreen = styled.Text`
+  color: #4ba651;
+  font-size: 14px;
+`;
+
+const SecondaryTextRed = styled.Text`
+  color: #b84743;
+  font-size: 14px;
+`;
 
 const StockCardsComponent = ({shortName, name, close, difference, percentage, imageURL} : Stock) => {
 
     const isGrowing = difference > 0;
 
     return (
-        <Row style={styles.container}>
-            <View style={styles.leftBlock}>
-                <Image source={{ uri: imageURL}} style={styles.circleImage} />
+        <RowContainer>
+            <LeftBlock>
+                <CircleImage source={{ uri: imageURL}} />
                 <View>
-                <Text style={styles.primaryText}>{shortName}</Text>
-                <Text style={styles.secondaryText}>{name}</Text>
+                <PrimaryText>{shortName}</PrimaryText>
+                <SecondaryText>{name}</SecondaryText>
                 </View>
-            </View>
-            <View style={styles.rightBlock}>
-                <Text style={styles.primaryText}>${close}</Text>
+            </LeftBlock>
+            <RightBlock>
+                <PrimaryText>${close}</PrimaryText>
                 <Row>
                     <Icon name={isGrowing ? 'trending-up' : "trending-down"} size={15} color={isGrowing ? "#4ba651" : "#b84743"}  />
-                    <Text style={isGrowing ? styles.secondaryTextGreen: styles.secondaryTextRed}>  {isGrowing && "$"}{difference.toFixed(2)}{!isGrowing && "%"} (${percentage.toFixed(2)}%)`</Text>
+                    {isGrowing ? (
+                    <SecondaryTextGreen>
+                        ${difference.toFixed(2)} (${percentage.toFixed(2)}%)
+                    </SecondaryTextGreen>
+                    ) : (
+                    <SecondaryTextRed>
+                        {difference.toFixed(2)}% (${percentage.toFixed(2)}%)
+                    </SecondaryTextRed>
+                    )}
                 </Row>
-            </View>
-        </Row>
+            </RightBlock>
+        </RowContainer>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-    },
-    leftBlock: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    circleImage: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        marginRight: 8,
-    },
-    primaryText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    secondaryText: {
-        color: 'gray',
-        fontSize: 14,
-    },
-    rightBlock: {
-        alignItems: 'flex-end',
-    },
-    secondaryTextGreen: {
-        color: '#4ba651',
-        fontSize: 14,
-    },
-    secondaryTextRed: {
-        color: '#b84743',
-        fontSize: 14,
-    },
-});
 
 export default StockCardsComponent;

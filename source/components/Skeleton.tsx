@@ -1,9 +1,15 @@
 import { View, Animated, Easing, StyleSheet } from "react-native";
 import React, { useEffect, useRef } from "react";
 import LinearGradient from "react-native-linear-gradient";
+import styled from "styled-components/native";
 
 const AnimatedLG = Animated.createAnimatedComponent(LinearGradient);
 
+const StyledSkeleton = styled.View`
+  background-color: #E1E9EE;
+  height: 150px;
+  border-radius: 4px;
+`;
 interface GSkeletonProps {
   width?: number;
   height?: number;
@@ -31,9 +37,8 @@ const Skeleton = ({ width = 200, height = 200, style }: GSkeletonProps) => {
   });
 
   return (
-    <View
+    <StyledSkeleton
       style={{
-        ...styles.container,
         width,
         height,
         backgroundColor: '#1c1e1f',
@@ -53,15 +58,8 @@ const Skeleton = ({ width = 200, height = 200, style }: GSkeletonProps) => {
           transform: [{ translateX: translateX }],
         }}
       />
-    </View>
+    </StyledSkeleton>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    overflow: "hidden",
-    borderRadius: 4,
-  },
-});
 
 export default Skeleton;

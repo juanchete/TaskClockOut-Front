@@ -1,7 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Row from './Row';
+import styled from 'styled-components/native';
+
+const Container = styled.View`
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+const Title = styled.Text`
+  font-size: 25px;
+  color: white;
+`;
+
+const Content = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const TextTitle = styled.Text`
+  margin-right: 5px;
+  color: #898a8c;
+`;
 
 interface TitleLinkProps {
     title: string;
@@ -11,34 +31,14 @@ interface TitleLinkProps {
 
 const TitleLink: React.FC<TitleLinkProps> = ({ title, text, iconName }) => {
     return (
-        <Row style={styles.container}>
-            <Text style={styles.title}>{title}</Text>
-            <View style={styles.content}>
-                <Text style={styles.text}>{text}</Text>
+        <Container>
+            <Title>{title}</Title>
+            <Content>
+                <TextTitle>{text}</TextTitle>
                 <Icon name={iconName} color={'#898a8c'} size={20}/>
-            </View>
-        </Row>
+            </Content>
+        </Container>
     );
 };
- 
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: 10,
-    },
-    title: {
-        fontSize: 25,
-        color: 'white',
-      },
-    content: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    text: {
-        marginRight: 5,
-        color: '#898a8c',
-    },
-});
 
 export default TitleLink;

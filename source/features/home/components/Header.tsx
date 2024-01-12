@@ -1,12 +1,47 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Modal from "react-native-modal";
+import { StyleSheet, View } from 'react-native';
 import Button from '../../../components/Button';
 import ModalDeposit from './ModalDeposit';
 import Row from '../../../components/Row';
 import Icon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import styled from 'styled-components/native';
 
+const HeaderStyle = styled.View`
+  padding-top: 20px;
+  padding-horizontal: 16px;
+  margin-bottom: 40px;
+`;
+
+const SecondHeader = styled.View`
+  padding-horizontal: 16px;
+  margin-bottom: 40px;
+`;
+
+const HeaderText = styled.Text`
+  font-size: 18px;
+  color: gray;
+`;
+
+const ProfitText = styled.Text`
+  font-size: 18px;
+  color: #4ba651;
+`;
+
+const PowerText = styled.Text`
+  font-size: 25px;
+  color: white;
+`;
+
+const AmountText = styled.Text`
+  font-size: 44px;
+  color: white;
+  margin-top: 8px;
+`;
+
+const PowerContent = styled.View`
+flexDirection: 'row', justifyContent: "space-between"
+`;
 
 const Header: React.FC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -23,66 +58,34 @@ const Header: React.FC = () => {
 };
   return (
     <View>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Total Investing</Text>
+      <HeaderStyle>
+        <HeaderText>Total Investing</HeaderText>
         <Row style={{alignItems: "center"}}>
-          <Text style={styles.amountText}>$100,000</Text>
+          <AmountText>$100,000</AmountText>
           <Icon name="eye-off" size={15} color="#858688" style={styles.icon} />
         </Row>
         <Row style={{alignItems: "center"}}>
           <Icon name='trending-up' size={15} color="#4ba651" style={styles.iconTrending} />
-          <Text style={styles.profitText}>+$32.5 (0.48%)</Text>
+          <ProfitText>+$32.5 (0.48%)</ProfitText>
           <MaterialCommunityIcons name="progress-question" size={15} color="#858688" style={styles.iconQuestion} />
         </Row>
-      </View>
-      <View style={styles.secondHeader}>
+      </HeaderStyle>
+      <SecondHeader>
         <Row style={{alignItems: "center"}}>
-          <Text style={styles.headerText}>Total Investing</Text>
+          <HeaderText>Total Investing</HeaderText>
           <MaterialCommunityIcons name="progress-question" size={15} color="#858688" style={styles.iconQuestion} />
         </Row>
-        <View style={{ flexDirection: 'row', justifyContent: "space-between" }} >
-            <Text style={styles.powerText}>${buyingPower}</Text>
+        <PowerContent >
+            <PowerText>${buyingPower}</PowerText>
             <Button icon='plus' text="Deposit" onPress={toggleModal}/>
-        </View>
-      </View>
+        </PowerContent>
+      </SecondHeader>
      <ModalDeposit isVisible={isModalVisible} handleDeposit={handleDeposit} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    paddingTop: 20,
-    paddingHorizontal: 16,
-    marginBottom: 40
-  },
-  secondHeader: {
-    paddingHorizontal: 16,
-    marginBottom: 40
-  },
-  headerText: {
-    fontSize: 18,
-    color: 'gray',
-  },
-  profitText: {
-    fontSize: 18,
-    color: '#4ba651',
-  },
-  powerText: {
-    fontSize: 25,
-    color: 'white',
-  },
-  amountText: {
-    fontSize: 44,
-    color: 'white',
-    marginTop: 8,
-  },
-  watchList: {
-    flex: 1,
-    backgroundColor: 'gray',
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-  },
   icon: {
     marginLeft:10 ,
     marginTop: 8,
