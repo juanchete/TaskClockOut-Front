@@ -3,8 +3,8 @@ import styled from 'styled-components/native';
 import Row from './Row';
 
 interface Stock {
-    name: string;
-    value: number;
+  name: string;
+  value: number;
 }
 
 const Container = styled(Row)`
@@ -35,18 +35,22 @@ const RightBlock = styled.View`
   align-items: flex-end;
 `;
 
-const UserCards = ({name, value} : Stock) => {
-    return (
-        <Container>
-            <LeftBlock>
-                <CircleImage source={{ uri: "https://play-lh.googleusercontent.com/cShys-AmJ93dB0SV8kE6Fl5eSaf4-qMMZdwEDKI5VEmKAXfzOqbiaeAsqqrEBCTdIEs"}} />
-                <PrimaryText>{name}</PrimaryText>
-            </LeftBlock>
-            <RightBlock>
-                <PrimaryText>${value}</PrimaryText>
-            </RightBlock>
-        </Container>
-    );
+const UserCards = ({name, value}: Stock) => {
+  return (
+    <Container>
+      <LeftBlock>
+        <CircleImage
+          source={{
+            uri: 'https://play-lh.googleusercontent.com/cShys-AmJ93dB0SV8kE6Fl5eSaf4-qMMZdwEDKI5VEmKAXfzOqbiaeAsqqrEBCTdIEs',
+          }}
+        />
+        <PrimaryText>{name}</PrimaryText>
+      </LeftBlock>
+      <RightBlock>
+        <PrimaryText>${value}</PrimaryText>
+      </RightBlock>
+    </Container>
+  );
 };
 
 export default UserCards;

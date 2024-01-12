@@ -24,21 +24,21 @@ const TextTitle = styled.Text`
 `;
 
 interface TitleLinkProps {
-    title: string;
-    text: string;
-    iconName: string;
+  title: string;
+  text: string;
+  iconName: string;
 }
 
-const TitleLink: React.FC<TitleLinkProps> = ({ title, text, iconName }) => {
-    return (
-        <Container>
-            <Title>{title}</Title>
-            <Content>
-                <TextTitle>{text}</TextTitle>
-                <Icon name={iconName} color={'#898a8c'} size={20}/>
-            </Content>
-        </Container>
-    );
+const TitleLink: React.FC<TitleLinkProps> = ({title, text, iconName}) => {
+  return (
+    <Container>
+      <Title>{title}</Title>
+      <Content>
+        <TextTitle>{text}</TextTitle>
+        <Icon name={iconName} color={'#898a8c'} size={20} />
+      </Content>
+    </Container>
+  );
 };
 
 export default TitleLink;

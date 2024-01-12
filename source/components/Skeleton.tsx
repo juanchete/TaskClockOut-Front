@@ -1,12 +1,12 @@
-import { View, Animated, Easing, StyleSheet } from "react-native";
-import React, { useEffect, useRef } from "react";
-import LinearGradient from "react-native-linear-gradient";
-import styled from "styled-components/native";
+import {Animated, Easing, StyleSheet} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+import styled from 'styled-components/native';
 
 const AnimatedLG = Animated.createAnimatedComponent(LinearGradient);
 
 const StyledSkeleton = styled.View`
-  background-color: #E1E9EE;
+  background-color: #e1e9ee;
   height: 150px;
   border-radius: 4px;
 `;
@@ -16,8 +16,7 @@ interface GSkeletonProps {
   style?: object;
 }
 
-const Skeleton = ({ width = 200, height = 200, style }: GSkeletonProps) => {
-
+const Skeleton = ({width = 200, height = 200, style}: GSkeletonProps) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -43,19 +42,18 @@ const Skeleton = ({ width = 200, height = 200, style }: GSkeletonProps) => {
         height,
         backgroundColor: '#1c1e1f',
         ...style,
-      }}
-    >
+      }}>
       <AnimatedLG
         colors={[
-            "rgba(255, 255, 255, 0)",
-            "rgba(255, 255, 255, 0.4)",
-            "rgba(255, 255, 255, 0)",
-          ]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
+          'rgba(255, 255, 255, 0)',
+          'rgba(255, 255, 255, 0.4)',
+          'rgba(255, 255, 255, 0)',
+        ]}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
         style={{
           ...StyleSheet.absoluteFillObject,
-          transform: [{ translateX: translateX }],
+          transform: [{translateX: translateX}],
         }}
       />
     </StyledSkeleton>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Modal from 'react-native-modal';
 import Button from '../../../components/Button';
 import styled from 'styled-components/native';
@@ -36,35 +36,40 @@ const Input = styled.TextInput`
 `;
 
 interface ModalDepositProps {
-    handleDeposit: (amount: string) => void;
-    isVisible: boolean;
+  handleDeposit: (amount: string) => void;
+  isVisible: boolean;
 }
 
-const ModalDeposit: React.FC<ModalDepositProps> = ({ handleDeposit, isVisible }) => {
-    const [amount, setAmount] = useState('');
+const ModalDeposit: React.FC<ModalDepositProps> = ({
+  handleDeposit,
+  isVisible,
+}) => {
+  const [amount, setAmount] = useState('');
 
-    const handleAmountChange = (value: string) => {
-        setAmount(value);
-    };
+  const handleAmountChange = (value: string) => {
+    setAmount(value);
+  };
 
-
-    return (
-        <Modal isVisible={isVisible}>
-            <ModalStyle>
-                <ModalContent>
-                    <Title>Add funds to your wallet</Title>
-                    <Description>Enter the amount you want to deposit:</Description>
-                    <Input
-                        keyboardType="numeric"
-                        value={amount}
-                        onChangeText={handleAmountChange}
-                    />
-                    <Button icon='plus' text="Deposit" onPress={() => handleDeposit(amount)}/>
-                </ModalContent>
-            </ModalStyle>
-        </Modal>
-    );
+  return (
+    <Modal isVisible={isVisible}>
+      <ModalStyle>
+        <ModalContent>
+          <Title>Add funds to your wallet</Title>
+          <Description>Enter the amount you want to deposit:</Description>
+          <Input
+            keyboardType="numeric"
+            value={amount}
+            onChangeText={handleAmountChange}
+          />
+          <Button
+            icon="plus"
+            text="Deposit"
+            onPress={() => handleDeposit(amount)}
+          />
+        </ModalContent>
+      </ModalStyle>
+    </Modal>
+  );
 };
-
 
 export default ModalDeposit;

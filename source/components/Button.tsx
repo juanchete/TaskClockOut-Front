@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { TouchableOpacityProps } from 'react-native';
+import {TouchableOpacityProps} from 'react-native';
 
 const StyledButton = styled.TouchableOpacity`
   height: 50px;
@@ -20,7 +20,7 @@ interface ButtonProps extends TouchableOpacityProps {
   title: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ title, ...props }) => (
+const Button: React.FC<ButtonProps> = ({title, ...props}) => (
   <StyledButton {...props}>
     <ButtonText>{title}</ButtonText>
   </StyledButton>
