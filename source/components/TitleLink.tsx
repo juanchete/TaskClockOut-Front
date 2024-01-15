@@ -5,7 +5,8 @@ import styled from 'styled-components/native';
 const Container = styled.View`
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px;
+  flex-direction: row;
 `;
 
 const Title = styled.Text`

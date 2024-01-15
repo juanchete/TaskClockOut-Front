@@ -12,7 +12,8 @@ interface ScreenProps {
 const StyledScrollView = styled(ScrollView)`
   flex: 1;
   background-color: #121415;
-  padding-top: 15px;
+  padding: 15px;
+  padding-top: 30px;
 `;
 
 const Screen: React.FC<ScreenProps> = ({children, refresh, refetch}) => (

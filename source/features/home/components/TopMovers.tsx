@@ -5,11 +5,11 @@ import UserCards from '../../../components/UserCards';
 import styled from 'styled-components/native';
 
 const ContainerRow = styled.View`
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-        flexDirection: 'row'
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20;
+  flex-direction: row;
 `;
 
 interface TopMovers {

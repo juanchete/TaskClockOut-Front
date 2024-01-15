@@ -3,12 +3,6 @@ import Modal from 'react-native-modal';
 import Button from '../../../components/Button';
 import styled from 'styled-components/native';
 
-const ModalStyle = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
 const ModalContent = styled.View`
   background-color: white;
   padding: 20px;
@@ -38,11 +32,13 @@ const Input = styled.TextInput`
 interface ModalDepositProps {
   handleDeposit: (amount: string) => void;
   isVisible: boolean;
+  onBackdropPress: () => void;
 }
 
 const ModalDeposit: React.FC<ModalDepositProps> = ({
   handleDeposit,
   isVisible,
+  onBackdropPress,
 }) => {
   const [amount, setAmount] = useState('');
 
@@ -51,23 +47,25 @@ const ModalDeposit: React.FC<ModalDepositProps> = ({
   };
 
   return (
-    <Modal isVisible={isVisible}>
-      <ModalStyle>
-        <ModalContent>
-          <Title>Add funds to your wallet</Title>
-          <Description>Enter the amount you want to deposit:</Description>
-          <Input
-            keyboardType="numeric"
-            value={amount}
-            onChangeText={handleAmountChange}
-          />
-          <Button
-            icon="plus"
-            text="Deposit"
-            onPress={() => handleDeposit(amount)}
-          />
-        </ModalContent>
-      </ModalStyle>
+    <Modal
+      isVisible={isVisible}
+      animationIn={'fadeInLeftBig'}
+      animationOut={'fadeOutRightBig'}
+      onBackdropPress={onBackdropPress}>
+      <ModalContent>
+        <Title>Add funds to your wallet</Title>
+        <Description>Enter the amount you want to deposit:</Description>
+        <Input
+          keyboardType="numeric"
+          value={amount}
+          onChangeText={handleAmountChange}
+        />
+        <Button
+          iconName="plus"
+          title="Deposit"
+          onPress={() => handleDeposit(amount)}
+        />
+      </ModalContent>
     </Modal>
   );
 };

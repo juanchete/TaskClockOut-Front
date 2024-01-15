@@ -10,7 +10,7 @@ const RowContainer = styled.View`
   align-items: center;
   padding-horizontal: 16px;
   padding-vertical: 8px;
-  flexdirection: row;
+  flex-direction: row;
 `;
 
 const LeftBlock = styled.View`

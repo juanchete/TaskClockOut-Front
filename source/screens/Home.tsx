@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import TopMovers from '../features/home/components/TopMovers';
 import {useWatchlistData} from '../features/home/services/getWatchlist';
 import Skeleton from '../components/Skeleton';
+import {Text} from 'react-native';
 
 const ContainerSkeleton = styled.View`
   flex: 1;
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
 
     refetch({date: randomDate});
   }, [refetch]);
+  console.log('isError', isError);
 
   return (
     <Screen refresh={isLoading} refetch={handleEndReached}>
@@ -36,7 +38,7 @@ const Home: React.FC = () => {
           <Skeleton width={300} height={300} />
         </ContainerSkeleton>
       ) : (
-        <Watchlist stocks={data?.data || []} />
+        <Watchlist stocks={data?.data || []} error={isError} />
       )}
       <TopMovers />
       {/* <TitleLink title="Top Movers" text="All" iconName="arrow-right-thin" /> */}

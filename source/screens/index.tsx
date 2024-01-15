@@ -46,7 +46,7 @@ const App = () => {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#151718',
-          height: 70,
+          height: 90,
           borderTopWidth: 0, // Add this line
           // paddingBottom: 8
         },

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Button from '../../../components/Button';
 import ModalDeposit from './ModalDeposit';
 import Row from '../../../components/Row';
@@ -40,15 +40,23 @@ const AmountText = styled.Text`
 `;
 
 const PowerContent = styled.View`
-flexDirection: 'row', justifyContent: "space-between"
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const Header: React.FC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [buyingPower, setBuyingPower] = useState(840.56);
+  const [isAmountVisible, setIsAmountVisible] = useState(true);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+  };
+
+  const handleCloseModal = () => {
+    console.log('toggleModal');
+
+    setModalVisible(false);
   };
 
   const handleDeposit = (amount: string) => {
@@ -56,13 +64,27 @@ const Header: React.FC = () => {
     setBuyingPower(buyingPower + Number(amount));
     toggleModal();
   };
+  const handleIconPress = () => {
+    setIsAmountVisible(!isAmountVisible);
+  };
   return (
     <View>
       <HeaderStyle>
         <HeaderText>Total Investing</HeaderText>
         <Row style={{alignItems: 'center'}}>
-          <AmountText>$100,000</AmountText>
-          <Icon name="eye-off" size={15} color="#858688" style={styles.icon} />
+          {isAmountVisible ? (
+            <AmountText>$100,000</AmountText>
+          ) : (
+            <AmountText>••••••••</AmountText>
+          )}
+          <TouchableOpacity onPress={handleIconPress}>
+            <Icon
+              name="eye-off"
+              size={15}
+              color="#858688"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </Row>
         <Row style={{alignItems: 'center'}}>
           <Icon
@@ -82,7 +104,7 @@ const Header: React.FC = () => {
       </HeaderStyle>
       <SecondHeader>
         <Row style={{alignItems: 'center'}}>
-          <HeaderText>Total Investing</HeaderText>
+          <HeaderText>Buying Power</HeaderText>
           <MaterialCommunityIcons
             name="progress-question"
             size={15}
@@ -90,12 +112,19 @@ const Header: React.FC = () => {
             style={styles.iconQuestion}
           />
         </Row>
+        {/* <PowerContent> */}
         <PowerContent>
           <PowerText>${buyingPower}</PowerText>
-          <Button icon="plus" text="Deposit" onPress={toggleModal} />
+          <Button title="Deposit" iconName="plus" onPress={toggleModal} />
         </PowerContent>
+
+        {/* </PowerContent> */}
       </SecondHeader>
-      <ModalDeposit isVisible={isModalVisible} handleDeposit={handleDeposit} />
+      <ModalDeposit
+        isVisible={isModalVisible}
+        handleDeposit={handleDeposit}
+        onBackdropPress={handleCloseModal}
+      />
     </View>
   );
 };
